@@ -1,0 +1,28 @@
+﻿body {
+    
+ 
+}
+
+
+.dimention-input{
+   /*color:aqua;*/
+   
+}
+.pixel-grid{
+    border:10px solid aqua;
+    display:flex;
+    width:60vh;
+    height:60vh;
+    flex-wrap:wrap;
+    align-content:flex-start;
+   /* column-gap:1em;
+    row-gap:1em;*/
+    
+}
+.pixel-cell {
+    
+   /* padding: 20px;*/
+    width:10%;
+    height:10%;
+    /*background:aqua;*/
+}

@@ -1,0 +1,21 @@
+﻿Pixel Art Fomatter To Do List.
+
+[].make pixel-grid CSS interactve. Bind to C#?.
+[].set preset dimentions. asign to dropdown menu.
+[].use dimention to create grid of buttons.
+[].buttons in grid change color when clicked.
+[].asingn a color value to cousor from a pallet. set static color pallet to right of grid.
+[].optinal null color.
+
+[].read grid vales. return data as an int array in textbox. first two ints as 0 for array locaton. second two for array dimentions columns, rows.
+[].inport data from a formatted array. print out to screen for editing.
+
+[X].isolate CSS to individual conponents.
+[].create button to compress/expand sections.
+
+[].expand color base. 8 base colors. second section hue shift shadding.
+[].use rbg values for colors. check if cant still use ints or if they need to be doubles
+
+[].save/load projects.
+[]. sazw as new prodject.
+[].create folders for prodjects.

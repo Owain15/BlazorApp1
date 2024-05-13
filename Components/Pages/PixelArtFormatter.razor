@@ -1,0 +1,191 @@
+﻿@page "/PixelArtFormatter"
+@rendermode InteractiveServer
+
+<PageTitle>Pixel Art Formatter</PageTitle>
+
+<h1>Pixel Art Formatter</h1>
+
+<hr />
+
+@* Setup Section *@
+
+<form>
+	<h2>Project Setup</h2>
+
+	<label> 
+		Presets
+		<select>
+			<option >Pick Preset</option>
+		    <option value="20,30">Small Sprite (20,30)px</option>
+			<option value="30,60">Medem Sprite (30,60)px</option>
+			<option value="40,100">Large Sprite (40,100)px</option>
+			<option value="160,144">GameBoy (160,144)px</option>
+			<option value="240,160">GameBoy Advanced (240,160)px</option>
+			<option value="256,240">N.E.S (256,240)px</option>
+			<option value="320,224">Saga Genesis (320,224)px</option>
+		</select>
+	</label>
+	
+	
+	<div>
+		
+		<label>
+			Column
+			<input type="number" class="dimention-input" @bind="inputColumn">Columns</input>
+		</label>
+			
+
+		<lable>
+			Row
+			<input type="number" class="dimention-input" @bind="inputRow">Rows</input>
+		</lable>
+		
+		
+	</div> 
+
+	<div>
+		
+		<button @onclick="@OpenNewProject">
+			@{
+				string text;
+				if(pixelReff == null){ text = "Open New Project"; }
+				else{ text = "New Project"; }
+			}
+			@text
+		</button>
+	
+		
+	
+	</div>
+
+</form>
+
+<hr />
+
+@* Pixel Grid Section *@
+
+<h2>Pixel Grid</h2>
+
+<div class="pixel-grid">
+
+	<div class="pixel-grid-toolbar">
+	
+	</div>
+
+	<div class="pixel-grid-display">
+
+		@if (pixelReff != null)
+		{
+			for (int pixelIndex = 0; pixelIndex < pixelReff.Length; pixelIndex++)
+			{
+				<button class="pixel-cell" style="background:@GetColorFromInt(pixelReff[pixelIndex]);"></button>
+				@* @onclick = "IncrementColor(pixelIndex)" *@
+			}
+		}
+		else
+		{
+			<p>No Project Open...</p>
+		}
+
+	</div>
+</div>
+
+<hr />
+
+<div>
+    <button>Close Current Project</button>
+	<button>Save Project</button>
+	<button>Save As New Project</button>
+	<button>Load Project</button>
+</div>
+
+<hr />
+
+<h2>Code. Inport/Export</h2>
+
+<textarea id="input/output"></textarea>
+
+@code {
+
+	// int inputRow{ get; set; }
+	// int inputColumn{ get; set; }
+
+	// int[] pixelReff{ get; set; }
+
+	int inputRow = 10;
+	int inputColumn = 10;
+
+	int[] pixelReff = new int[100];
+
+	PixelArtFormatterLogic logic = new PixelArtFormatterLogic();
+
+	public void SetPresetDimentions (int[] values)
+	{
+		inputColumn = values[0];
+		inputRow = values[1];
+	}
+
+	public void OpenNewProject()
+	{
+		pixelReff = logic.NewProject(inputColumn,inputRow);
+	}
+
+	// public struct Preset( string title, int columnReff, int rowReff)
+	// {
+	//     string Title;
+
+	// 	public int ColumnReff;
+	// 	public int RowReff;
+
+	// 	public Preset
+	// 	{
+	// 		Title=title;
+	// 		ColumnReff=columnReff;
+	// 		RowReff = rowReff;
+	// 	}	
+	// }
+
+	public ConsoleColor GetColorFromInt(int pixelValue)
+	{
+		ConsoleColor result = ConsoleColor.Red;
+		switch(pixelValue)
+		{
+			case 0: result = ConsoleColor.Cyan;break;
+			case 1: result = ConsoleColor.DarkGreen;break;
+			case 2: result = ConsoleColor.Magenta;break;
+
+		}
+		return result;
+	}
+	public void IncrementColor(int pixelIndex)
+	{
+		pixelReff[pixelIndex]=pixelReff[pixelIndex]+1;
+	}
+
+	public enum colorPalette  
+	{	
+		Black,
+		Aqua,
+		DarkGreen,
+		White
+	}
+
+	// // rowUpdate() {
+
+	// // }
+
+	// int row = 30;
+	// int column = 20;
+
+	// //int[] pixelArray = GenerateNewIntArray(30,20);
+
+	// public int[] GenerateNewIntArray(int row,int column)
+	// { return new int[(column * row)];}
+	// public void NewProdject()
+	// {
+		
+	// }
+
+	
+
+}
